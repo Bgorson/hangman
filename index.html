@@ -1,14 +1,49 @@
-<doctype <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title>Video Game Hangman</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+
 </head>
 <body>
     
+    <h1>Video Game Hangman</h1>
+<!-- Guessing Area-->
+<div>
+    <p id = "solution">What Video Game thing am I thinking of?</p> <!--Try to turn this text into the answer?-->
+    <p> Press any Key to get started</p>
+    <p id = "wintext"></p> <!--How many wins -->
+    <p id = "currentWord"></p> <!--Display of the word being guessed-->
+    <p id = "guessesleft"></p><!--how many guesses left-->
+    <p id = "userguesstext"></p><!---Whats been guessed-->
+</div>
+   
+<div>
+<!--Image and maybe sound effect? area-->
+
+</div>
+
+
+<script src="assets/javascript/game.js"></script>
 </body>
 </html>
+
+
+<!---
+Picks a word
+Displays current word
+replace '_' with the current string
+length of word = number of _ _ _ _ 's
+How does it know which blank space to replace? 
+
+Turn word into 
+
+01234
+_____
+mario
+
+-->
