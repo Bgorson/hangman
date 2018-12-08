@@ -78,7 +78,8 @@ document.onkeyup = function(event) {
         for(var i=0; i<chosenWord.length;i++) {
             if (chosenWord[i] === "userGuess") indices.push(i);
             } 
-            
+            //array with spaces chosenword.split. When reaching equality
+            //assign underscore to userguess
             
             
 
