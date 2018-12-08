@@ -60,10 +60,10 @@ chancesText.textContent = updatingSpace;
 
 //Function to randomly select a word
 
-// var str = "scissors"; example of finding multiple characters
+// var chosenWord = "scissors"; example of finding multiple characters
 // var indices = [];
-// for(var i=0; i<str.length;i++) {
-//     if (str[i] === "s") indices.push(i);
+// for(var i=0; i<chosenWord.length;i++) {
+//     if (chosenWord[i] === "userGuess") indices.push(i);
 // }
 //initates game
 
@@ -72,14 +72,22 @@ chancesText.textContent = updatingSpace;
 document.onkeyup = function(event) {
     var userGuess = event.key; //key press is stored to userguess
     var position = chosenWord.indexOf(userGuess); // first position is determined. Also determines if its in the word
-  //Able to identify the indices of both locations, Need to turn those into text replacements
+    //Able to identify the indices of both locations, Need to turn those into text replacements
     if (position > -1) { //checks if its in the word
-        for(var i=0; i<chosenWord.length;i++){ //for loop to find any instances of the userguess being in the world
-            if (chosenWord[i] == userGuess) 
-            updatingSpace.push(i); //currently pushing the number to the array NOT wanted
+        var indices = [];
+        for(var i=0; i<chosenWord.length;i++) {
+            if (chosenWord[i] === "userGuess") indices.push(i);
+            } 
+            
+            
+
+             //currently pushing the number to the array NOT wanted
         }
-        updatingSpace[position] = userGuess; //updates the FIRST position only with the user's guess    
-    };
+
+         //updates the FIRST position only with the user's guess    
+    
+
+
     if (updatingSpace.includes(userGuess) && updatingSpace[position+1] > 0) {
         userGuess = updatingSpace[position+1];
     };
