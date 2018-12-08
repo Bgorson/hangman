@@ -80,6 +80,7 @@ document.onkeyup = function(event) {
             } 
             
             
+            
 
              //currently pushing the number to the array NOT wanted
         }
