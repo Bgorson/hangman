@@ -24,7 +24,7 @@ var solutionText=document.getElementById("solution");
 var winText = document.getElementById("wintext");
 var userGuessText = document.getElementById("userguesstext");
 var guessesLeftText= document.getElementById("guessesleft");
-var words = ["mario"];
+var words = ["mario", 'tracer'];
 // var words = ["mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zerg"];
 var chances;
 var chancesText= document.getElementById("currentWord");
@@ -45,9 +45,9 @@ function newGame() {
     }
 //Creates the spaces of hangman    
 function makingSpace(string, times) {
-    var theSpaces = '';
+    var theSpaces = [];
     while (times > 0) {
-        theSpaces = theSpaces + string;
+        theSpaces.push(string);
         times --;
     }
     return theSpaces;
@@ -60,26 +60,34 @@ chancesText.textContent = updatingSpace;
 
 //Function to randomly select a word
 
-
-
+// var str = "scissors"; example of finding multiple characters
+// var indices = [];
+// for(var i=0; i<str.length;i++) {
+//     if (str[i] === "s") indices.push(i);
+// }
 //initates game
 
 
 //Activates on key press
 document.onkeyup = function(event) {
-    var userGuess = event.key;
-    var position = chosenWord.indexOf(userGuess);
-
-    if (position > -1) {
-    updatingSpace[position] = userGuess;      
+    var userGuess = event.key; //key press is stored to userguess
+    var position = chosenWord.indexOf(userGuess); // first position is determined. Also determines if its in the word
+  //Able to identify the indices of both locations, Need to turn those into text replacements
+    if (position > -1) { //checks if its in the word
+        for(var i=0; i<chosenWord.length;i++){ //for loop to find any instances of the userguess being in the world
+            if (chosenWord[i] == userGuess) 
+            updatingSpace.push(i); //currently pushing the number to the array NOT wanted
+        }
+        updatingSpace[position] = userGuess; //updates the FIRST position only with the user's guess    
     };
     if (updatingSpace.includes(userGuess) && updatingSpace[position+1] > 0) {
-        updatingSpace[position+1] = userGuess;
+        userGuess = updatingSpace[position+1];
     };
     if (position < -1) {
         guessesLeft--;
+
         guessesArray.push(userGuess);
-            if (guessesLeft ==0) {
+            if (guessesLeft == 0) {
                 newGame();
             }
 
@@ -93,7 +101,7 @@ document.onkeyup = function(event) {
              winText.textContent = "wins: " + wins;
              userGuessText.textContent = "You've already chosen: " + guessesArray;
              guessesLeftText.textContent= "You've got " + guessesLeft +" chances left!";
-             chancesText.textContent = "What you've solved" + updatingSpace;
+             chancesText.textContent = "What you've solved:  " + updatingSpace;
             }
        
  
