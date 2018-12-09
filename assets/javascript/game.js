@@ -75,6 +75,8 @@ document.onkeyup = function(event) {
         guessesArray.push(userGuess);
         if (guessesLeft === 0) {
             console.log("Lost")
+            var audio = new Audio("assets/audio/lose.mp3");
+            audio.play();
             newGame();
         }
     }
@@ -97,7 +99,6 @@ document.onkeyup = function(event) {
                 wins++;
                 imageSolution.innerHTML = "<img src='assets/images/" + chosenWord + ".png'>";
                 var audio = new Audio("assets/audio/" + chosenWord+ ".mp3");
-                audio.duration= 1;
                 audio.play();
                 console.log("won")
                 newGame();
