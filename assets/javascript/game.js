@@ -16,7 +16,8 @@ var chosenLetter;
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var wordArray= [];
 var chosenWord = '';
-
+var positionMatch= [];
+var userGuess;
 
 //Variables used for writing text to document
 var solutionText=document.getElementById("solution");
@@ -24,9 +25,8 @@ var solutionText=document.getElementById("solution");
 var winText = document.getElementById("wintext");
 var userGuessText = document.getElementById("userguesstext");
 var guessesLeftText= document.getElementById("guessesleft");
-var words = ["mario", 'tracer'];
+var words = ['tracer'];
 // var words = ["mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zerg"];
-var chances;
 var chancesText= document.getElementById("currentWord");
 
 function randWord() {
@@ -40,7 +40,7 @@ function newGame() {
     guessesArray = [];
     guessesLeft = 10;
     chosenLetter;
-    chances = chosenWord.length;
+    updatingSpace= [];
     
     }
 //Creates the spaces of hangman    
@@ -53,65 +53,45 @@ function makingSpace(string, times) {
     return theSpaces;
 }
 newGame()
-chancesText.textContent = makingSpace(' _ ', chances)
-var updatingSpace= makingSpace('_', chances);
+chancesText.textContent = makingSpace(' _ ', chosenWord.length)
+var updatingSpace= makingSpace('_', chosenWord.length);
 chancesText.textContent = updatingSpace;
-//All Functions
-
-//Function to randomly select a word
-
-// var chosenWord = "scissors"; example of finding multiple characters
-// var indices = [];
-// for(var i=0; i<chosenWord.length;i++) {
-//     if (chosenWord[i] === "userGuess") indices.push(i);
-// }
-//initates game
-
 
 //Activates on key press
 document.onkeyup = function(event) {
-    var userGuess = event.key; //key press is stored to userguess
-    var position = chosenWord.indexOf(userGuess); // first position is determined. Also determines if its in the word
-    //Able to identify the indices of both locations, Need to turn those into text replacements
-    if (position > -1) { //checks if its in the word
-        var indices = [];
-        for(var i=0; i<chosenWord.length;i++) {
-            if (chosenWord[i] === "userGuess") indices.push(i);
-            } 
-            //array with spaces chosenword.split. When reaching equality
-            //assign underscore to userguess
-            
-            
-
-             //currently pushing the number to the array NOT wanted
-        }
-
-         //updates the FIRST position only with the user's guess    
-    
-
-
-    if (updatingSpace.includes(userGuess) && updatingSpace[position+1] > 0) {
-        userGuess = updatingSpace[position+1];
-    };
-    if (position < -1) {
+    userGuess = event.key; //key press is stored to userguess
+    if ((chosenWord.indexOf(userGuess)) === -1) {
         guessesLeft--;
-
         guessesArray.push(userGuess);
-            if (guessesLeft == 0) {
+        if (guessesLeft === 0) {
+            newGame();
+        }
+    }
+    for (i =0; i < chosenWord.length;i++) {
+        if (userGuess === chosenWord.charAt(i)) {
+            positionMatch.push(i);
+            console.log("first if statement " + positionMatch);
+        } 
+  
+         }
+    for (i=0;  i < positionMatch.length;i++) {
+            var wordIndex= positionMatch[i];
+           updatingSpace.splice(wordIndex,1,userGuess);
+            console.log(updatingSpace)
+            
+            wordArray.push(userGuess);  
+                }
+            positionMatch= [];
+            if (updatingSpace.indexOf('_') === -1) {
+                wins++;
                 newGame();
             }
-
-    }
-
-  //checks if the user pick is in the word
-
-   
-
+              
          //Display scoreboard
              winText.textContent = "wins: " + wins;
              userGuessText.textContent = "You've already chosen: " + guessesArray;
              guessesLeftText.textContent= "You've got " + guessesLeft +" chances left!";
              chancesText.textContent = "What you've solved:  " + updatingSpace;
-            }
-       
+        
+        }
  
