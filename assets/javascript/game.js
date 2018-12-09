@@ -40,8 +40,8 @@ function newGame() {
     guessesArray = [];
     guessesLeft = 10;
     chosenLetter;
-    updatingSpace= [];
-    
+    chancesText.textContent = makingSpace(' _ ', chosenWord.length)
+    chancesText.textContent = updatingSpace;
     }
 //Creates the spaces of hangman    
 function makingSpace(string, times) {
@@ -82,7 +82,7 @@ document.onkeyup = function(event) {
             wordArray.push(userGuess);  
                 }
             positionMatch= [];
-            if (updatingSpace.indexOf('_') === -1) {
+            if (updatingSpace.indexOf('_') == -1) {
                 wins++;
                 newGame();
             }
