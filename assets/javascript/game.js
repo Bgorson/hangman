@@ -25,7 +25,7 @@ var solutionText=document.getElementById("solution");
 var winText = document.getElementById("wintext");
 var userGuessText = document.getElementById("userguesstext");
 var guessesLeftText= document.getElementById("guessesleft");
-var words = ["winston","mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zerg"];
+var words = ["winston","mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zergling"];
 var chancesText= document.getElementById("currentWord");
 var imageSolution= document.getElementById("wordImage");
 
