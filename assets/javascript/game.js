@@ -96,7 +96,8 @@ document.onkeyup = function(event) {
     if (updatingSpace.indexOf('_') == -1) {
                 wins++;
                 imageSolution.innerHTML = "<img src='assets/images/" + chosenWord + ".png'>";
-                var audio = new Audio("assets/audio/winmusic.mp3");
+                var audio = new Audio("assets/audio/" + chosenWord+ ".mp3");
+                audio.duration= 1;
                 audio.play();
                 console.log("won")
                 newGame();
