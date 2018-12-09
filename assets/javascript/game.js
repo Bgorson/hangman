@@ -25,8 +25,7 @@ var solutionText=document.getElementById("solution");
 var winText = document.getElementById("wintext");
 var userGuessText = document.getElementById("userguesstext");
 var guessesLeftText= document.getElementById("guessesleft");
-var words = ['tracer'];
-// var words = ["mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zerg"];
+var words = ["mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zerg"];
 var chancesText= document.getElementById("currentWord");
 
 function randWord() {
@@ -35,13 +34,13 @@ function randWord() {
 };
 //Game start function. Picks new letter, clears guesses, restores chances
 function newGame() {
-    randWord();
     chosenWord = randWord();
     guessesArray = [];
     guessesLeft = 10;
-    chosenLetter;
-    chancesText.textContent = makingSpace(' _ ', chosenWord.length)
+    chosenLetter ='';
+    updatingSpace= makingSpace('_', chosenWord.length);
     chancesText.textContent = updatingSpace;
+    console.log(chosenWord);
     }
 //Creates the spaces of hangman    
 function makingSpace(string, times) {
@@ -51,11 +50,12 @@ function makingSpace(string, times) {
         times --;
     }
     return theSpaces;
+    
 }
 newGame()
 chancesText.textContent = makingSpace(' _ ', chosenWord.length)
 var updatingSpace= makingSpace('_', chosenWord.length);
-chancesText.textContent = updatingSpace;
+// chancesText.textContent = updatingSpace;
 
 //Activates on key press
 document.onkeyup = function(event) {
@@ -64,34 +64,36 @@ document.onkeyup = function(event) {
         guessesLeft--;
         guessesArray.push(userGuess);
         if (guessesLeft === 0) {
+            console.log("Lost")
             newGame();
         }
     }
-    for (i =0; i < chosenWord.length;i++) {
-        if (userGuess === chosenWord.charAt(i)) {
-            positionMatch.push(i);
-            console.log("first if statement " + positionMatch);
-        } 
-  
-         }
-    for (i=0;  i < positionMatch.length;i++) {
-            var wordIndex= positionMatch[i];
-           updatingSpace.splice(wordIndex,1,userGuess);
-            console.log(updatingSpace)
-            
-            wordArray.push(userGuess);  
-                }
-            positionMatch= [];
-            if (updatingSpace.indexOf('_') == -1) {
+        for (i =0; i < chosenWord.length;i++) {
+            if (userGuess === chosenWord.charAt(i)) {
+                positionMatch.push(i);
+                console.log("first if statement " + positionMatch);
+            } 
+    
+            }
+        for (i=0;  i < positionMatch.length;i++) {
+                var wordIndex= positionMatch[i];
+            updatingSpace.splice(wordIndex,1,userGuess);
+                console.log(updatingSpace)
+                
+                wordArray.push(userGuess);  
+                    }
+                positionMatch= [];
+    if (updatingSpace.indexOf('_') == -1) {
                 wins++;
+                console.log("won")
                 newGame();
             }
-              
-         //Display scoreboard
-             winText.textContent = "wins: " + wins;
-             userGuessText.textContent = "You've already chosen: " + guessesArray;
-             guessesLeftText.textContent= "You've got " + guessesLeft +" chances left!";
-             chancesText.textContent = "What you've solved:  " + updatingSpace;
         
+    //Display scoreboard
+        winText.textContent = "wins: " + wins;
+        userGuessText.textContent = "You've already chosen: " + guessesArray;
+        guessesLeftText.textContent= "You've got " + guessesLeft +" chances left!";
+        chancesText.textContent = "What you've solved:  " + updatingSpace;
+
         }
  
