@@ -7,13 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 </head>
 <body>
-    
-    <h1>Video Game Hangman</h1>
+    <div>
+    <h1 class = "jumbotron text-center">Video Game Hangman</h1>
+    </div>
 <!-- Guessing Area-->
-<div>
+<div class = "container">
+<div class = "row">
+        <div class = "col">
+        <div id= "wordImage"> 
+    </div>
+
+    <div class ="col">
     <p id = "solution">What Video Game thing am I thinking of?</p> <!--Try to turn this text into the answer?-->
     <p> Press any Key to get started</p>
     <p id = "wintext"></p> <!--How many wins -->
@@ -21,10 +29,8 @@
     <p id = "guessesleft"></p><!--how many guesses left-->
     <p id = "userguesstext"></p><!---Whats been guessed-->
 </div>
-   
-<div>
-<!--Image and maybe sound effect? area-->
 
+</div>
 </div>
 
 

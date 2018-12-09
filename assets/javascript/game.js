@@ -25,8 +25,9 @@ var solutionText=document.getElementById("solution");
 var winText = document.getElementById("wintext");
 var userGuessText = document.getElementById("userguesstext");
 var guessesLeftText= document.getElementById("guessesleft");
-var words = ["mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zerg"];
+var words = ["winston","mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zerg"];
 var chancesText= document.getElementById("currentWord");
+var imageSolution= document.getElementById("wordImage");
 
 function randWord() {
     var pickedWord = words[Math.floor(Math.random() * words.length)];
@@ -41,7 +42,7 @@ function newGame() {
     updatingSpace= makingSpace('_', chosenWord.length);
     chancesText.textContent = updatingSpace;
     console.log(chosenWord);
-    }
+        }
 //Creates the spaces of hangman    
 function makingSpace(string, times) {
     var theSpaces = [];
@@ -57,10 +58,19 @@ chancesText.textContent = makingSpace(' _ ', chosenWord.length)
 var updatingSpace= makingSpace('_', chosenWord.length);
 // chancesText.textContent = updatingSpace;
 
+
+
+
 //Activates on key press
 document.onkeyup = function(event) {
     userGuess = event.key; //key press is stored to userguess
-    if ((chosenWord.indexOf(userGuess)) === -1) {
+    if (letters.includes(userGuess)) {
+        
+    
+    if (guessesArray.includes(userGuess)){
+        console.log("repeat or bad input")
+    } 
+    else if ((chosenWord.indexOf(userGuess)) === -1) {
         guessesLeft--;
         guessesArray.push(userGuess);
         if (guessesLeft === 0) {
@@ -85,6 +95,9 @@ document.onkeyup = function(event) {
                 positionMatch= [];
     if (updatingSpace.indexOf('_') == -1) {
                 wins++;
+                imageSolution.innerHTML = "<img src='assets/images/" + chosenWord + ".png'>";
+                var audio = new Audio("assets/audio/winmusic.mp3");
+                audio.play();
                 console.log("won")
                 newGame();
             }
@@ -96,4 +109,4 @@ document.onkeyup = function(event) {
         chancesText.textContent = "What you've solved:  " + updatingSpace;
 
         }
- 
+    }
