@@ -25,9 +25,10 @@ var solutionText=document.getElementById("solution");
 var winText = document.getElementById("wintext");
 var userGuessText = document.getElementById("userguesstext");
 var guessesLeftText= document.getElementById("guessesleft");
-var words = ["winston","mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zergling"];
+var words = ["winston","mario", "overwatch", "nintendo", "tracer", "donkeykong", "luigi", "kirby", "starcraft", "zergling", "link"];
 var chancesText= document.getElementById("currentWord");
 var imageSolution= document.getElementById("wordImage");
+var directionsText = document.getElementById("directions");
 
 function randWord() {
     var pickedWord = words[Math.floor(Math.random() * words.length)];
@@ -64,19 +65,22 @@ var updatingSpace= makingSpace('_', chosenWord.length);
 //Activates on key press
 document.onkeyup = function(event) {
     userGuess = event.key; //key press is stored to userguess
+    directionsText.textContent="";
     if (letters.includes(userGuess)) {
         
     
     if (guessesArray.includes(userGuess)){
         console.log("repeat or bad input")
+        directionsText.textContent="No repeats!"
     } 
     else if ((chosenWord.indexOf(userGuess)) === -1) {
         guessesLeft--;
         guessesArray.push(userGuess);
-        if (guessesLeft === 0) {
+         if (guessesLeft === 0) {
             console.log("Lost")
             var audio = new Audio("assets/audio/lose.mp3");
             audio.play();
+            directionsText.textContent= "You didn't get the word!"
             newGame();
         }
     }
@@ -105,10 +109,13 @@ document.onkeyup = function(event) {
             }
         
     //Display scoreboard
-        winText.textContent = "wins: " + wins;
+        winText.textContent = "Wins: " + wins;
         userGuessText.textContent = "You've already chosen: " + guessesArray;
         guessesLeftText.textContent= "You've got " + guessesLeft +" chances left!";
         chancesText.textContent = "What you've solved:  " + updatingSpace;
 
+        }
+        else {
+            directionsText.textContent="Letters only!"
         }
     }
